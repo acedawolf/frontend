@@ -1,0 +1,14 @@
+language: generic
+sudo: required
+
+# Is used to install docker
+services:
+  - docker
+
+# Tells Travis CI to the docker command
+before_install:
+  - docker build  -t aricahrdson87/frontend -f Dockerfile.dev .
+
+# This is used to run the test for npm
+script:
+ - docker run -e CI=true aricahrdson87/frontend npm run test
