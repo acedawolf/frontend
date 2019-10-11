@@ -12,3 +12,16 @@ before_install:
 # This is used to run the test for npm
 script:
  - docker run -e CI=true aricahrdson87/frontend npm run test
+
+# Configure the deployment script
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-016876949508"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
